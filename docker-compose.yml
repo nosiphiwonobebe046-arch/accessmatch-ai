@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: example
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: example
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    image: tiangolo/uvicorn-gunicorn-fastapi:latest
+    restart: always
+    ports:
+      - "8000:80"
+    environment:
+      DATABASE_URL: postgres://example:example@db/example
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
