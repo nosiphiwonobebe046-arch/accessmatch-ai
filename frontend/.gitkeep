@@ -1,0 +1,4 @@
+mkdir frontend backend ai-model database docs tests deployment
+git add .
+git commit -m "Initial project structure"
+git push
